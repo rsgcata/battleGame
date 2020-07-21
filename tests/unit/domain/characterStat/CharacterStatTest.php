@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace battleGame\tests\domain\characterStat;
+namespace battleGame\tests\unit\domain\characterStat;
 
 use battleGame\domain\characterStat\AbstractCharacterStat;
 use battleGame\domain\characterStat\Defence;
@@ -10,7 +10,7 @@ use battleGame\domain\characterStat\Health;
 use battleGame\domain\characterStat\Luck;
 use battleGame\domain\characterStat\Speed;
 use battleGame\domain\characterStat\Strength;
-use battleGame\tests\domain\FakeRandomNumberGenerator;
+use battleGame\tests\unit\domain\FakeRandomNumberGenerator;
 use DomainException;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;

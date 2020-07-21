@@ -7,8 +7,11 @@ require_once 'vendor/autoload.php';
 use battleGame\domain\Battle;
 use battleGame\domain\characterSkill\MagicShield;
 use battleGame\domain\characterSkill\RapidStrike;
+use battleGame\domain\DefaultHeroStats;
+use battleGame\domain\DefaultMonsterStats;
 use battleGame\domain\Hero;
 use battleGame\domain\Monster;
+use battleGame\infrastructure\domain\RandomNumberGenerator;
 use battleGame\presentation\BattleResultViewModel;
 use battleGame\presentation\CharacterStatsViewModel;
 use battleGame\presentation\HeroStatsViewModel;
@@ -17,39 +20,42 @@ use Symfony\Component\HttpFoundation\Response;
 
 $request = Request::createFromGlobals();
 $response = new Response();
-//test
 
 if ($request->getRequestUri() === '/battle/runBattle') {
     try {
+        $rng = new RandomNumberGenerator();
+
         $monster = Monster::createWithRandomStats(
-            Monster::MIN_HEALTH,
-            Monster::MAX_HEALTH,
-            Monster::MIN_STRENGTH,
-            Monster::MAX_STRENGTH,
-            Monster::MIN_DEFENCE,
-            Monster::MIN_SPEED,
-            Monster::MAX_DEFENCE,
-            Monster::MAX_SPEED,
-            Monster::MIN_LUCK,
-            Monster::MAX_LUCK);
+            DefaultMonsterStats::MIN_HEALTH,
+            DefaultMonsterStats::MAX_HEALTH,
+            DefaultMonsterStats::MIN_STRENGTH,
+            DefaultMonsterStats::MAX_STRENGTH,
+            DefaultMonsterStats::MIN_DEFENCE,
+            DefaultMonsterStats::MIN_SPEED,
+            DefaultMonsterStats::MAX_DEFENCE,
+            DefaultMonsterStats::MAX_SPEED,
+            DefaultMonsterStats::MIN_LUCK,
+            DefaultMonsterStats::MAX_LUCK,
+            $rng);
 
         $hero = Hero::createWithRandomStats(
-            Hero::MIN_HEALTH,
-            Hero::MAX_HEALTH,
-            Hero::MIN_STRENGTH,
-            Hero::MAX_STRENGTH,
-            Hero::MIN_DEFENCE,
-            Hero::MAX_DEFENCE,
-            Hero::MIN_SPEED,
-            Hero::MAX_SPEED,
-            Hero::MIN_LUCK,
-            Hero::MAX_LUCK,
+            DefaultHeroStats::MIN_HEALTH,
+            DefaultHeroStats::MAX_HEALTH,
+            DefaultHeroStats::MIN_STRENGTH,
+            DefaultHeroStats::MAX_STRENGTH,
+            DefaultHeroStats::MIN_DEFENCE,
+            DefaultHeroStats::MAX_DEFENCE,
+            DefaultHeroStats::MIN_SPEED,
+            DefaultHeroStats::MAX_SPEED,
+            DefaultHeroStats::MIN_LUCK,
+            DefaultHeroStats::MAX_LUCK,
             [
                 new RapidStrike(Hero::RAPID_STRIKE_CHANCE)
             ],
             [
                 new MagicShield(Hero::MAGIC_SHIELD_CHANCE)
-            ]);
+            ],
+            $rng);
 
         $attackSkills = $defenceSkills = [];
 
@@ -77,7 +83,7 @@ if ($request->getRequestUri() === '/battle/runBattle') {
             $monster->getSpeed()->getValue(),
             $monster->getLuck()->getValue());
 
-        $battle = new Battle($hero, $monster, Battle::MAX_ALLOWED_TURNS);
+        $battle = new Battle($hero, $monster, Battle::MAX_ALLOWED_TURNS, $rng);
         $rounds = $battle->runBattle();
 
         $battleResult = new BattleResultViewModel(
@@ -89,7 +95,7 @@ if ($request->getRequestUri() === '/battle/runBattle') {
         $response->setStatusCode(200);
         $response->headers->set('Content-Type', 'application/json; ' . 'charset=UTF-8');
         $response->setContent(json_encode($battleResult));
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
         error_log($e->getMessage());
         $response->setStatusCode(500);
     }

@@ -8,7 +8,7 @@ use DomainException;
 
 class Health extends AbstractCharacterStat
 {
-    public const MIN_ALLOWED_HEALTH = 1;
+    public const MIN_ALLOWED_HEALTH = 0;
 
     /**
      * Lowers the health by a certain amount

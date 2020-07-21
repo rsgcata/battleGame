@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace battleGame\tests\domain;
+namespace battleGame\tests\unit\domain;
 
 use battleGame\domain\AbstractCharacter;
 use battleGame\domain\characterStat\Health;

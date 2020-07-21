@@ -25,8 +25,6 @@ class BattleRoundEnded implements JsonSerializable
 
     protected bool $defenderWasLucky;
 
-    protected int $damageAfterSkill;
-
     protected int $finalDamageValue;
 
     protected int $defenderHealth;
@@ -39,7 +37,6 @@ class BattleRoundEnded implements JsonSerializable
      * @param int $initialDamageValue
      * @param ICharacterSkill|null $skillUsedByHero
      * @param bool $defenderWasLucky
-     * @param int $damageAfterSkill
      * @param int $finalDamageValue
      * @param int $defenderHealth
      */
@@ -49,7 +46,6 @@ class BattleRoundEnded implements JsonSerializable
         int $initialDamageValue,
         ?ICharacterSkill $skillUsedByHero,
         bool $defenderWasLucky,
-        int $damageAfterSkill,
         int $finalDamageValue,
         int $defenderHealth)
     {
@@ -58,7 +54,6 @@ class BattleRoundEnded implements JsonSerializable
         $this->initialDamageValue = $initialDamageValue;
         $this->skillUsedByHero = $skillUsedByHero;
         $this->defenderWasLucky = $defenderWasLucky;
-        $this->damageAfterSkill = $damageAfterSkill;
         $this->finalDamageValue = $finalDamageValue;
         $this->defenderHealth = $defenderHealth;
     }
@@ -106,14 +101,6 @@ class BattleRoundEnded implements JsonSerializable
     /**
      * @return int
      */
-    public function getDamageAfterSkill(): int
-    {
-        return $this->damageAfterSkill;
-    }
-
-    /**
-     * @return int
-     */
     public function getFinalDamageValue(): int
     {
         return $this->finalDamageValue;
@@ -136,7 +123,6 @@ class BattleRoundEnded implements JsonSerializable
             'skillUsedByHero' => $this->skillUsedByHero !== null
                 ? $this->skillUsedByHero->getSkillName() : null,
             'defenderWasLucky' => $this->defenderWasLucky,
-            'damageAfterSkill' => $this->damageAfterSkill,
             'finalDamageValue' => $this->finalDamageValue,
             'defenderHealth' => $this->defenderHealth
         ];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace battleGame\tests\domain;
+namespace battleGame\tests\unit\domain;
 
 use battleGame\domain\characterSkill\IAttackSkill;
 use battleGame\domain\characterSkill\IDefenceSkill;

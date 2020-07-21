@@ -7,7 +7,6 @@ namespace battleGame\domain;
 use battleGame\domain\characterSkill\IAttackSkill;
 use battleGame\domain\characterSkill\ICharacterSkill;
 use battleGame\domain\characterSkill\IDefenceSkill;
-use Exception;
 
 class Hero extends AbstractCharacter
 {
@@ -139,6 +138,10 @@ class Hero extends AbstractCharacter
         IRandomNumberGenerator $rng,
         ICharacterSkill ...$skillCollection) : ?ICharacterSkill
     {
+        if(empty($skillCollection)) {
+            return null;
+        }
+
         $probability = $rng->generateFromRange(0, 99);
 
         /* @var $skillToUse ICharacterSkill */

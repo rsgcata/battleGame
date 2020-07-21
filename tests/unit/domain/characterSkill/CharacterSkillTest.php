@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace battleGame\tests\domain\characterSkill;
+namespace battleGame\tests\unit\domain\characterSkill;
 
 use battleGame\domain\characterSkill\AbstractCharacterSkill;
 use battleGame\domain\characterSkill\MagicShield;

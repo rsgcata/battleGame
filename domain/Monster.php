@@ -14,7 +14,7 @@ class Monster extends AbstractCharacter
     }
 
     /**
-     * Creates a new hero with random stats
+     * Creates a new monster with random stats
      *
      * @param int $healthMin
      * @param int $healthMax

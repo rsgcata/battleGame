@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace battleGame\domain;
 
-use battleGame\domain\IRandomNumberGenerator;
-use Exception;
-
 class Battle
 {
     /**
@@ -41,6 +38,7 @@ class Battle
      * @param Monster $monster
      * @param int $maxTurns The max number of turns before the battle ends if both characters
      *            have health greater than 0
+     * @param IRandomNumberGenerator $rng
      */
     public function __construct(
         Hero $hero,
@@ -123,12 +121,12 @@ class Battle
                 $skill,
                 $defenderIsLucky,
                 $damage,
-                $damage,
                 $defender->getHealth()->getValue()
             );
 
             $roundEvents[] = $roundEndedEvent;
 
+            // Inverse attacker/defender
             $tempAttacker = $attacker;
             $attacker = $defender;
             $defender = $tempAttacker;
@@ -144,8 +142,9 @@ class Battle
      */
     public function hasBattleEnded() : bool
     {
-        if ($this->round >= $this->maxTurns || $this->hero->getHealth()
-                ->getValue() <= 0 || $this->monster->getHealth()->getValue() <= 0) {
+        if ($this->round >= $this->maxTurns
+            || $this->hero->getHealth()->getValue() <= 0
+            || $this->monster->getHealth()->getValue() <= 0) {
             return true;
         }
 
