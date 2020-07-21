@@ -50,10 +50,10 @@ if ($request->getRequestUri() === '/battle/runBattle') {
             DefaultHeroStats::MIN_LUCK,
             DefaultHeroStats::MAX_LUCK,
             [
-                new RapidStrike(Hero::RAPID_STRIKE_CHANCE)
+                new RapidStrike(DefaultHeroStats::RAPID_STRIKE_CHANCE)
             ],
             [
-                new MagicShield(Hero::MAGIC_SHIELD_CHANCE)
+                new MagicShield(DefaultHeroStats::MAGIC_SHIELD_CHANCE)
             ],
             $rng);
 
