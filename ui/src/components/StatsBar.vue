@@ -7,7 +7,7 @@
       >
         Monster
       </div>
-      <div :class="[!isHero ? 'mr-auto' : '']">
+      <div :class="[!isHero ? 'ml-auto' : '']">
         <span class="font-weight-bold">Strength</span>: {{ strength }}
       </div>
       <div class="px-3">
@@ -31,14 +31,14 @@
     <div v-if="isHero">
       <span class="font-weight-bold">Attack Skills</span>:
       <span
-        v-for="(index, skill) in attackSkills"
+        v-for="(skill, index) in attackSkills"
         :key="index"
       >
         {{ skill }}
       </span>
       <span class="font-weight-bold">| Defence Skills</span>:
       <span
-        v-for="(index, skill) in defenceSkills"
+        v-for="(skill, index) in defenceSkills"
         :key="index"
       >
         {{ skill }}
@@ -68,51 +68,51 @@
 </template>
 
 <script>
-    export default {
-        name: "StatsBar",
-        props: {
-            isHero: {
-                type: Boolean,
-                required: true
-            },
-            health: {
-                type: Number,
-                required: true
-            },
-            strength: {
-                type: Number,
-                required: true
-            },
-            defence: {
-                type: Number,
-                required: true
-            },
-            speed: {
-                type: Number,
-                required: true
-            },
-            luck: {
-                type: Number,
-                required: true
-            },
-            attackSkills: {
-                type: Array,
-                required: false,
-                default: function() {
-                    return [];
-                }
-            },
-            defenceSkills: {
-                type: Array,
-                required: false,
-                default: function() {
-                    return [];
-                }
-            },
-            currentHealth: {
-                type: Number,
-                required: true
-            }
+  export default {
+    name: "StatsBar",
+    props: {
+      isHero: {
+        type: Boolean,
+        required: true
+      },
+      health: {
+        type: Number,
+        required: true
+      },
+      strength: {
+        type: Number,
+        required: true
+      },
+      defence: {
+        type: Number,
+        required: true
+      },
+      speed: {
+        type: Number,
+        required: true
+      },
+      luck: {
+        type: Number,
+        required: true
+      },
+      attackSkills: {
+        type: Array,
+        required: false,
+        default: function () {
+          return [];
         }
+      },
+      defenceSkills: {
+        type: Array,
+        required: false,
+        default: function () {
+          return [];
+        }
+      },
+      currentHealth: {
+        type: Number,
+        required: true
+      }
     }
+  }
 </script>
