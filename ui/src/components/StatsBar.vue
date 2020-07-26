@@ -1,58 +1,70 @@
 <template>
-    <div>
-        <div class="d-flex">
-            <div v-show="!isHero"
-                 class="font-weight-bold">
-                Monster
-            </div>
-            <div class="px-3"
-                 v-bind:class="[!isHero ? 'mr-auto' : '']">
-                <span class="font-weight-bold">Strength</span>: {{strength}}
-            </div>
-            <div class="px-3">
-                <span class="font-weight-bold">Defence</span>: {{defence}}
-            </div>
-            <div class="px-3">
-                <span class="font-weight-bold">Speed</span>: {{speed}}
-            </div>
-            <div class="px-3">
-                <span class="font-weight-bold">Luck</span>: {{luck}}
-            </div>
-            <div v-show="isHero"
-                 class="font-weight-bold"
-                 v-bind:class="[isHero ? 'ml-auto' : '']">
-                Hero
-            </div>
-        </div>
-
-        <div v-if="isHero">
-            <span class="font-weight-bold">Attack Skills</span>:
-            <span v-for="skill in attackSkills">
-                {{skill}}
-            </span>
-            <span class="font-weight-bold">| Defence Skills</span>:
-            <span v-for="skill in defenceSkills">
-                {{skill}}
-            </span>
-        </div>
-        <div v-else>
-            -
-        </div>
-
-        <div>
-            <div class="font-weight-bold">
-                Health (<span>{{health}}</span>):
-            </div>
-            <div class="progress">
-                <div id="hero-health-bar"
-                     class="progress-bar"
-                     role="progressbar"
-                     v-bind:aria-valuenow="currentHealth"
-                     aria-valuemin="0"
-                     aria-valuemax="100"></div>
-            </div>
-        </div>
+  <div>
+    <div class="d-flex">
+      <div
+        v-show="!isHero"
+        class="font-weight-bold"
+      >
+        Monster
+      </div>
+      <div :class="[!isHero ? 'mr-auto' : '']">
+        <span class="font-weight-bold">Strength</span>: {{ strength }}
+      </div>
+      <div class="px-3">
+        <span class="font-weight-bold">Defence</span>: {{ defence }}
+      </div>
+      <div class="px-3">
+        <span class="font-weight-bold">Speed</span>: {{ speed }}
+      </div>
+      <div class="px-3">
+        <span class="font-weight-bold">Luck</span>: {{ luck }}
+      </div>
+      <div
+        v-show="isHero"
+        class="font-weight-bold"
+        :class="[isHero ? 'ml-auto' : '']"
+      >
+        Hero
+      </div>
     </div>
+
+    <div v-if="isHero">
+      <span class="font-weight-bold">Attack Skills</span>:
+      <span
+        v-for="(index, skill) in attackSkills"
+        :key="index"
+      >
+        {{ skill }}
+      </span>
+      <span class="font-weight-bold">| Defence Skills</span>:
+      <span
+        v-for="(index, skill) in defenceSkills"
+        :key="index"
+      >
+        {{ skill }}
+      </span>
+    </div>
+    <div v-else>
+      -
+    </div>
+
+    <div>
+      <div class="font-weight-bold">
+        Health (<span>{{ health }}</span>):
+      </div>
+      <div class="progress">
+        <div
+          id="hero-health-bar"
+          class="progress-bar"
+          role="progressbar"
+          :aria-valuenow="currentHealth"
+          :style="{'width': currentHealth + '%'}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -65,31 +77,37 @@
             },
             health: {
                 type: Number,
-                required: false
+                required: true
             },
             strength: {
                 type: Number,
-                required: false
+                required: true
             },
             defence: {
                 type: Number,
-                required: false
+                required: true
             },
             speed: {
                 type: Number,
-                required: false
+                required: true
             },
             luck: {
                 type: Number,
-                required: false
+                required: true
             },
             attackSkills: {
                 type: Array,
-                required: false
+                required: false,
+                default: function() {
+                    return [];
+                }
             },
             defenceSkills: {
                 type: Array,
-                required: false
+                required: false,
+                default: function() {
+                    return [];
+                }
             },
             currentHealth: {
                 type: Number,
