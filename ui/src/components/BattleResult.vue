@@ -172,7 +172,7 @@
 
           let keyPusher = setInterval(() => {
             pushRoundResult(keyPusher);
-          }, 2000);
+          }, 500);
         }
       }
     }
