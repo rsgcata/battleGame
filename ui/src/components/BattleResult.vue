@@ -1,8 +1,8 @@
 <template>
   <div class="battle-details-container card">
     <div
-      v-show="currentBattleState === battleStates.preparing"
-      class="h-100 d-flex flex-column align-items-center justify-content-center"
+      :class="[currentBattleState === battleStates.preparing ? 'd-flex' : 'd-none']"
+      class="h-100 flex-column align-items-center justify-content-center"
     >
       <div>
         Preparing Game World ...
@@ -15,22 +15,23 @@
     </div>
 
     <div
-      v-show="counter !== 0 && battleRounds.length !== 0"
-      class="overflow-auto h-100 text-center align-middle display-2"
+      :class="[counter !== 0 && battleRounds.length !== 0 ? 'd-flex' : 'd-none']"
+      class="h-100 display-2 flex-column align-items-center justify-content-center"
     >
       {{ counter }}
     </div>
 
     <div
+      ref="roundsContainer"
       v-show="counter === 0 && battleRounds.length !== 0"
       class="overflow-auto h-100 text-center align-middle"
     >
       <div
         v-for="(roundKey, index) in keysOfBattleRoundsToShow"
-        v-bind:key="index"
+        :key="index"
         class="text-center"
       >
-        <div class="font-weight-bold pb-3">
+        <div class="font-weight-bold pt-3 pb-2">
           *** Round: {{ battleRounds[roundKey].roundNumber }} ***
         </div>
 
@@ -57,8 +58,8 @@
               The Monster now has {{ battleRounds[roundKey].defenderHealth }} health left (took
               {{ battleRounds[roundKey].finalDamageValue }} damage.
             </div>
+          </div>
         </div>
-
         <div v-else>
           <div
             v-if="battleRounds[roundKey].defenderWasLucky"
@@ -85,20 +86,38 @@
           </div>
         </div>
       </div>
+
+      <div v-show="keysOfBattleRoundsToShow.length === battleRounds.length"
+      class="font-weight-bold h5">
+        <div v-show="winner === 'hero'">
+          Hero is the winner!
+        </div>
+        <div v-show="winner === 'monster'">
+          Monster is the winner!
+        </div>
+        <div v-show="winner === null">
+          It's a tie!
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "BattleResult",
+    name: 'BattleResult',
     props: {
       battleRounds: {
         type: Array,
         required: false,
         default: function () {
-          return [];
+          return []
         }
+      },
+      winner: {
+        type: String,
+        required: false,
+        default: null
       }
     },
     data: function () {
@@ -113,33 +132,46 @@
         // A collection of battleRounds array keys, this way we don't have to copy
         // all the array
         keysOfBattleRoundsToShow: []
-      };
+      }
     },
     watch: {
       battleRounds: function () {
-        setTimeout(() => {
-          this.currentBattleState = this.battleStates.counting;
-        }, 2000)
+        this.currentBattleState = this.battleStates.counting;
       },
       currentBattleState: function (newVal) {
-        if(newVal === this.battleStates.counting) {
+        if (newVal === this.battleStates.counting) {
           let countdown = setInterval(() => {
             if (this.counter === 0) {
-              this.currentBattleState = this.battleStates.running;
-              clearInterval(countdown);
+              this.currentBattleState = this.battleStates.running
+              clearInterval(countdown)
             } else {
               this.counter--;
             }
           }, 1000);
-        }
-        else if(newVal === this.battleStates.running) {
+        } else if (newVal === this.battleStates.running) {
+          const pushRoundResult = (intervalToClear) => {
+            this.keysOfBattleRoundsToShow.push(this.keysOfBattleRoundsToShow.length);
+
+            this.$store.commit(
+              'updateCharactersHealth',
+              this.battleRounds[this.keysOfBattleRoundsToShow.length - 1]);
+
+            if (this.keysOfBattleRoundsToShow.length === this.battleRounds.length) {
+              this.$emit('battle-results-shown');
+
+              clearInterval(intervalToClear);
+            }
+
+            this.$nextTick().then(() => {
+              this.$refs['roundsContainer'].scrollTop = 9999;
+            });
+          };
+
+          // Run first time without waiting
+          pushRoundResult();
+
           let keyPusher = setInterval(() => {
-            if(this.keysOfBattleRoundsToShow.length === this.battleRounds.length) {
-              clearInterval(keyPusher);
-            }
-            else {
-              this.keysOfBattleRoundsToShow.push(this.keysOfBattleRoundsToShow.length);
-            }
+            pushRoundResult(keyPusher);
           }, 2000);
         }
       }

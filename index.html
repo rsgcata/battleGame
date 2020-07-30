@@ -110,7 +110,7 @@
                 }
             };
 
-            $.ajax('http://localhost:8080/battle/runBattle', {
+            $.ajax('/battle/runBattle', {
                 dataType: 'json',
                 method: 'GET'
             }).then(function (data) {
@@ -183,11 +183,11 @@
         }
 
         .winner {
-            background-color: rgb(63, 191, 127, 0.8);
+            background-color: rgba(63, 191, 127, 0.8);
         }
 
         .loser {
-            background-color: rgb(191, 63, 63, 0.8);
+            background-color: rgba(191, 63, 63, 0.8);
         }
 
         #battle-details-container {

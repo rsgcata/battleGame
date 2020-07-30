@@ -32,14 +32,14 @@
       <span class="font-weight-bold">Attack Skills</span>:
       <span
         v-for="(skill, index) in attackSkills"
-        :key="index"
+        :key="'attack' + index"
       >
         {{ skill }}
       </span>
       <span class="font-weight-bold">| Defence Skills</span>:
       <span
         v-for="(skill, index) in defenceSkills"
-        :key="index"
+        :key="'defence' + index"
       >
         {{ skill }}
       </span>
@@ -58,9 +58,9 @@
           class="progress-bar"
           role="progressbar"
           :aria-valuenow="currentHealth"
-          :style="{'width': currentHealth + '%'}"
+          :style="{'width': healthLeftRatio + '%'}"
+          :aria-valuemax="health"
           aria-valuemin="0"
-          aria-valuemax="100"
         />
       </div>
     </div>
@@ -112,6 +112,11 @@
       currentHealth: {
         type: Number,
         required: true
+      }
+    },
+    computed: {
+      healthLeftRatio: function() {
+        return parseInt((this.currentHealth * 100) / this.health);
       }
     }
   }
