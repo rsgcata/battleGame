@@ -17,11 +17,10 @@ export default new Vuex.Store({
       state.currentHeroHealth = battleResult.heroStats.health;
       state.currentMonsterHealth = battleResult.monsterStats.health;
     },
-    updateCharactersHealth: function(state, battleRound) {
-      if(battleRound.heroWasAttacker) {
+    updateCharactersHealth: function (state, battleRound) {
+      if (battleRound.heroWasAttacker) {
         state.currentMonsterHealth = battleRound.defenderHealth;
-      }
-      else {
+      } else {
         state.currentHeroHealth = battleRound.defenderHealth;
       }
     }

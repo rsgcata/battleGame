@@ -9,7 +9,7 @@ class RapidStrike extends AbstractCharacterSkill implements IAttackSkill
     /**
      * {@inheritDoc}
      */
-    public function augmentAttackDamage(int $damageValue) : int
+    public function augmentAttackDamage(int $damageValue): int
     {
         return $damageValue * 2;
     }
@@ -17,7 +17,7 @@ class RapidStrike extends AbstractCharacterSkill implements IAttackSkill
     /**
      * {@inheritDoc}
      */
-    public function getSkillName() : string
+    public function getSkillName(): string
     {
         return 'Rapid Strike';
     }

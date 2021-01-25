@@ -8,9 +8,9 @@
         Preparing Game World ...
       </div>
       <div class="lds-ring">
-        <div />
-        <div />
-        <div />
+        <div/>
+        <div/>
+        <div/>
       </div>
     </div>
 
@@ -88,7 +88,7 @@
       </div>
 
       <div v-show="keysOfBattleRoundsToShow.length === battleRounds.length"
-      class="font-weight-bold h5">
+           class="font-weight-bold h5">
         <div v-show="winner === 'hero'">
           Hero is the winner!
         </div>
@@ -104,127 +104,127 @@
 </template>
 
 <script>
-  export default {
-    name: 'BattleResult',
-    props: {
-      battleRounds: {
-        type: Array,
-        required: false,
-        default: function () {
-          return []
-        }
-      },
-      winner: {
-        type: String,
-        required: false,
-        default: null
+export default {
+  name: 'BattleResult',
+  props: {
+    battleRounds: {
+      type: Array,
+      required: false,
+      default: function () {
+        return []
       }
     },
-    data: function () {
-      return {
-        counter: 5,
-        battleStates: {
-          preparing: 1,
-          counting: 2,
-          running: 3
-        },
-        currentBattleState: 1,
-        // A collection of battleRounds array keys, this way we don't have to copy
-        // all the array
-        keysOfBattleRoundsToShow: []
-      }
-    },
-    watch: {
-      battleRounds: function () {
-        this.currentBattleState = this.battleStates.counting;
+    winner: {
+      type: String,
+      required: false,
+      default: null
+    }
+  },
+  data: function () {
+    return {
+      counter: 5,
+      battleStates: {
+        preparing: 1,
+        counting: 2,
+        running: 3
       },
-      currentBattleState: function (newVal) {
-        if (newVal === this.battleStates.counting) {
-          let countdown = setInterval(() => {
-            if (this.counter === 0) {
-              this.currentBattleState = this.battleStates.running
-              clearInterval(countdown)
-            } else {
-              this.counter--;
-            }
-          }, 1000);
-        } else if (newVal === this.battleStates.running) {
-          const pushRoundResult = (intervalToClear) => {
-            this.keysOfBattleRoundsToShow.push(this.keysOfBattleRoundsToShow.length);
+      currentBattleState: 1,
+      // A collection of battleRounds array keys, this way we don't have to copy
+      // all the array
+      keysOfBattleRoundsToShow: []
+    }
+  },
+  watch: {
+    battleRounds: function () {
+      this.currentBattleState = this.battleStates.counting;
+    },
+    currentBattleState: function (newVal) {
+      if (newVal === this.battleStates.counting) {
+        let countdown = setInterval(() => {
+          if (this.counter === 0) {
+            this.currentBattleState = this.battleStates.running
+            clearInterval(countdown)
+          } else {
+            this.counter--;
+          }
+        }, 1000);
+      } else if (newVal === this.battleStates.running) {
+        const pushRoundResult = (intervalToClear) => {
+          this.keysOfBattleRoundsToShow.push(this.keysOfBattleRoundsToShow.length);
 
-            this.$store.commit(
-              'updateCharactersHealth',
-              this.battleRounds[this.keysOfBattleRoundsToShow.length - 1]);
+          this.$store.commit(
+            'updateCharactersHealth',
+            this.battleRounds[this.keysOfBattleRoundsToShow.length - 1]);
 
-            if (this.keysOfBattleRoundsToShow.length === this.battleRounds.length) {
-              this.$emit('battle-results-shown');
+          if (this.keysOfBattleRoundsToShow.length === this.battleRounds.length) {
+            this.$emit('battle-results-shown');
 
-              clearInterval(intervalToClear);
-            }
+            clearInterval(intervalToClear);
+          }
 
-            this.$nextTick().then(() => {
-              this.$refs['roundsContainer'].scrollTop = 9999;
-            });
-          };
+          this.$nextTick().then(() => {
+            this.$refs['roundsContainer'].scrollTop = 9999;
+          });
+        };
 
-          // Run first time without waiting
-          pushRoundResult();
+        // Run first time without waiting
+        pushRoundResult();
 
-          let keyPusher = setInterval(() => {
-            pushRoundResult(keyPusher);
-          }, 500);
-        }
+        let keyPusher = setInterval(() => {
+          pushRoundResult(keyPusher);
+        }, 500);
       }
     }
   }
+}
 </script>
 
 <style scoped lang="scss">
-  .battle-details-container {
-    text-align: center;
-    background-color: white;
-    border-radius: 20px;
-    border: 5px dashed #ddd;
-  }
+.battle-details-container {
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  border: 5px dashed #ddd;
+}
 
-  .lds-ring {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-  }
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
 
-  .lds-ring div {
-    box-sizing: border-box;
-    display: block;
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border: 8px solid;
-    border-radius: 50%;
-    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #0b2e13 transparent transparent transparent;
-  }
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #0b2e13 transparent transparent transparent;
+}
 
-  .lds-ring div:nth-child(1) {
-    animation-delay: -0.45s;
-  }
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
 
-  .lds-ring div:nth-child(2) {
-    animation-delay: -0.3s;
-  }
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
 
-  .lds-ring div:nth-child(3) {
-    animation-delay: -0.15s;
-  }
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
 
-  @keyframes lds-ring {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>

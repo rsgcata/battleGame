@@ -60,12 +60,12 @@ abstract class AbstractCharacterStat
      * @return void
      * @throws DomainException If value does not fit the game mechanics
      */
-    protected abstract function assertStatValueFitsGameMechanics(int $value) : void;
+    protected abstract function assertStatValueFitsGameMechanics(int $value): void;
 
     /**
      * @return int
      */
-    public function getValue() : int
+    public function getValue(): int
     {
         return $this->value;
     }

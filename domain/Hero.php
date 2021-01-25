@@ -60,7 +60,7 @@ class Hero extends AbstractCharacter
         int $luckMax,
         array $attackSkills,
         array $defenceSkills,
-        IRandomNumberGenerator $randomNumberGenerator) : self
+        IRandomNumberGenerator $randomNumberGenerator): self
     {
         $self = new self();
 
@@ -87,7 +87,7 @@ class Hero extends AbstractCharacter
      * @param IDefenceSkill ...$defenceSkills
      * @return void
      */
-    private function setDefenceSkills(IDefenceSkill ...$defenceSkills) : void
+    private function setDefenceSkills(IDefenceSkill ...$defenceSkills): void
     {
         $this->defenceSkills = $defenceSkills;
     }
@@ -96,7 +96,7 @@ class Hero extends AbstractCharacter
      * @param IAttackSkill ...$attackSkills
      * @return void
      */
-    private function setAttackSkills(IAttackSkill ...$attackSkills) : void
+    private function setAttackSkills(IAttackSkill ...$attackSkills): void
     {
         $this->attackSkills = $attackSkills;
     }
@@ -108,7 +108,7 @@ class Hero extends AbstractCharacter
      *
      * @return IAttackSkill|null
      */
-    public function generateRandomAttackSkill(IRandomNumberGenerator $rng) : ?IAttackSkill
+    public function generateRandomAttackSkill(IRandomNumberGenerator $rng): ?IAttackSkill
     {
         return $this->generateRandomSkill($rng, ...$this->attackSkills);
     }
@@ -136,9 +136,9 @@ class Hero extends AbstractCharacter
      */
     private function generateRandomSkill(
         IRandomNumberGenerator $rng,
-        ICharacterSkill ...$skillCollection) : ?ICharacterSkill
+        ICharacterSkill ...$skillCollection): ?ICharacterSkill
     {
-        if(empty($skillCollection)) {
+        if (empty($skillCollection)) {
             return null;
         }
 
@@ -165,7 +165,7 @@ class Hero extends AbstractCharacter
     /**
      * @return IAttackSkill[]
      */
-    public function getAttackSkills() : array
+    public function getAttackSkills(): array
     {
         return $this->attackSkills;
     }
@@ -173,7 +173,7 @@ class Hero extends AbstractCharacter
     /**
      * @return IDefenceSkill[]
      */
-    public function getDefenceSkills() : array
+    public function getDefenceSkills(): array
     {
         return $this->defenceSkills;
     }

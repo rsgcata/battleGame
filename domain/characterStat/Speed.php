@@ -13,7 +13,7 @@ class Speed extends AbstractCharacterStat
     /**
      * {@inheritDoc}
      */
-    protected function assertStatValueFitsGameMechanics(int $value) : void
+    protected function assertStatValueFitsGameMechanics(int $value): void
     {
         if ($value < self::MIN_ALLOWED_SPEED) {
             throw new DomainException(

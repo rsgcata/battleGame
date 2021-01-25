@@ -14,5 +14,5 @@ interface IDefenceSkill extends ICharacterSkill
      *
      * @return int The decreased damage value
      */
-    public function decreaseAttackDamage(int $damageValue) : int;
+    public function decreaseAttackDamage(int $damageValue): int;
 }

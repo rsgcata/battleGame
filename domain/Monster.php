@@ -41,7 +41,7 @@ class Monster extends AbstractCharacter
         int $speedMax,
         int $luckMin,
         int $luckMax,
-        IRandomNumberGenerator $randomNumberGenerator) : self
+        IRandomNumberGenerator $randomNumberGenerator): self
     {
         $self = new self();
 

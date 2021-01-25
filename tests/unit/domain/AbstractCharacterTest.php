@@ -57,7 +57,7 @@ class AbstractCharacterTest extends TestCase
 
         $character = $this->buildCharacterWithLuck($min, $max);
 
-        for($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $this->assertTrue($character->isLucky($this->rng));
         }
     }
@@ -72,7 +72,7 @@ class AbstractCharacterTest extends TestCase
         $luckCount = 0;
         $numOfTries = 100;
 
-        for($i = 0; $i < $numOfTries; $i++) {
+        for ($i = 0; $i < $numOfTries; $i++) {
             if ($character->isLucky($this->rng)) {
                 $luckCount++;
             }
@@ -90,7 +90,7 @@ class AbstractCharacterTest extends TestCase
 
         $luckCount = 0;
 
-        for($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             if ($character->isLucky($this->rng)) {
                 $luckCount++;
             }

@@ -13,7 +13,7 @@ class Defence extends AbstractCharacterStat
     /**
      * {@inheritDoc}
      */
-    protected function assertStatValueFitsGameMechanics(int $value) : void
+    protected function assertStatValueFitsGameMechanics(int $value): void
     {
         if ($value < self::MIN_ALLOWED_DEFENCE) {
             throw new DomainException(

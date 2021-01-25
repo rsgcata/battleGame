@@ -17,17 +17,16 @@ class FakeRandomNumberGenerator implements IRandomNumberGenerator
 
     public function generateFromRange(int $min, int $max): int
     {
-        if($min === $max) {
+        if ($min === $max) {
             return $min;
         }
 
-        if($min + $this->seed <= $max) {
+        if ($min + $this->seed <= $max) {
             $num = $min + $this->seed;
             $this->seed++;
 
             return $num;
-        }
-        else {
+        } else {
             $this->seed = 0;
             $num = $min + $this->seed;
             $this->seed++;

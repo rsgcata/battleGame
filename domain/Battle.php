@@ -57,7 +57,7 @@ class Battle
      *
      * @return BattleRoundEnded[] A collection of finalized round events
      */
-    public function runBattle() : array
+    public function runBattle(): array
     {
         if ($this->monster->getSpeed()->getValue() > $this->hero->getSpeed()->getValue()) {
             $attacker = $this->monster;
@@ -88,8 +88,7 @@ class Battle
 
             if ($defenderIsLucky) {
                 $damage = 0;
-            }
-            else {
+            } else {
                 $damage = $attacker->getStrength()->getValue()
                     - $defender->getDefence()->getValue();
 
@@ -101,9 +100,7 @@ class Battle
                     if ($skill !== null) {
                         $damage = $skill->augmentAttackDamage($damage);
                     }
-                }
-
-                if ($defender instanceof Hero) {
+                } else {
                     $skill = $defender->generateRandomDefenceSkill($this->rng);
 
                     if ($skill !== null) {
@@ -140,7 +137,7 @@ class Battle
      *
      * @return bool
      */
-    public function hasBattleEnded() : bool
+    public function hasBattleEnded(): bool
     {
         if ($this->round >= $this->maxTurns
             || $this->hero->getHealth()->getValue() <= 0
@@ -156,7 +153,7 @@ class Battle
      *
      * @return string|null
      */
-    public function getWinner() : ?string
+    public function getWinner(): ?string
     {
         if ($this->hero->getHealth()->getValue() === 0
             || $this->monster->getHealth()->getValue() === 0) {

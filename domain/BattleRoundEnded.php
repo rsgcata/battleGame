@@ -114,7 +114,7 @@ class BattleRoundEnded implements JsonSerializable
         return $this->defenderHealth;
     }
 
-    public function jsonSerialize() : array
+    public function jsonSerialize(): array
     {
         return [
             'roundNumber' => $this->roundNumber,

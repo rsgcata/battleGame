@@ -13,7 +13,7 @@ class Strength extends AbstractCharacterStat
     /**
      * {@inheritDoc}
      */
-    protected function assertStatValueFitsGameMechanics(int $value) : void
+    protected function assertStatValueFitsGameMechanics(int $value): void
     {
         if ($value < self::MIN_ALLOWED_STRENGTH) {
             throw new DomainException(

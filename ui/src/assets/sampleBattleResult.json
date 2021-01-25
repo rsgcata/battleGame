@@ -1,61 +1,61 @@
 {
-    "heroStats": {
-        "attackSkills": [
-            "Rapid Strike"
-        ],
-        "defenceSkills": [
-            "Magic Shield"
-        ],
-        "health": 71,
-        "defence": 47,
-        "strength": 79,
-        "speed": 41,
-        "luck": 19
-    },
-    "monsterStats": {
-        "health": 78,
-        "defence": 40,
-        "strength": 77,
-        "speed": 60,
-        "luck": 40
-    },
-    "roundsResults": [
-        {
-            "roundNumber": 1,
-            "heroWasAttacker": false,
-            "initialDamageValue": 30,
-            "skillUsedByHero": "Magic Shield",
-            "defenderWasLucky": false,
-            "finalDamageValue": 15,
-            "defenderHealth": 56
-        },
-        {
-            "roundNumber": 2,
-            "heroWasAttacker": true,
-            "initialDamageValue": 39,
-            "skillUsedByHero": null,
-            "defenderWasLucky": false,
-            "finalDamageValue": 39,
-            "defenderHealth": 39
-        },
-        {
-            "roundNumber": 3,
-            "heroWasAttacker": false,
-            "initialDamageValue": 30,
-            "skillUsedByHero": null,
-            "defenderWasLucky": false,
-            "finalDamageValue": 30,
-            "defenderHealth": 26
-        },
-        {
-            "roundNumber": 4,
-            "heroWasAttacker": true,
-            "initialDamageValue": 39,
-            "skillUsedByHero": null,
-            "defenderWasLucky": false,
-            "finalDamageValue": 39,
-            "defenderHealth": 0
-        }
+  "heroStats": {
+    "attackSkills": [
+      "Rapid Strike"
     ],
-    "winner": "hero"
+    "defenceSkills": [
+      "Magic Shield"
+    ],
+    "health": 71,
+    "defence": 47,
+    "strength": 79,
+    "speed": 41,
+    "luck": 19
+  },
+  "monsterStats": {
+    "health": 78,
+    "defence": 40,
+    "strength": 77,
+    "speed": 60,
+    "luck": 40
+  },
+  "roundsResults": [
+    {
+      "roundNumber": 1,
+      "heroWasAttacker": false,
+      "initialDamageValue": 30,
+      "skillUsedByHero": "Magic Shield",
+      "defenderWasLucky": false,
+      "finalDamageValue": 15,
+      "defenderHealth": 56
+    },
+    {
+      "roundNumber": 2,
+      "heroWasAttacker": true,
+      "initialDamageValue": 39,
+      "skillUsedByHero": null,
+      "defenderWasLucky": false,
+      "finalDamageValue": 39,
+      "defenderHealth": 39
+    },
+    {
+      "roundNumber": 3,
+      "heroWasAttacker": false,
+      "initialDamageValue": 30,
+      "skillUsedByHero": null,
+      "defenderWasLucky": false,
+      "finalDamageValue": 30,
+      "defenderHealth": 26
+    },
+    {
+      "roundNumber": 4,
+      "heroWasAttacker": true,
+      "initialDamageValue": 39,
+      "skillUsedByHero": null,
+      "defenderWasLucky": false,
+      "finalDamageValue": 39,
+      "defenderHealth": 0
+    }
+  ],
+  "winner": "hero"
 }

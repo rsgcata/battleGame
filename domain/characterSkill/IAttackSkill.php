@@ -14,5 +14,5 @@ interface IAttackSkill extends ICharacterSkill
      *
      * @return int The augmented damage value
      */
-    public function augmentAttackDamage(int $damageValue) : int;
+    public function augmentAttackDamage(int $damageValue): int;
 }

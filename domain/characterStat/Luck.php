@@ -15,7 +15,7 @@ class Luck extends AbstractCharacterStat
     /**
      * {@inheritDoc}
      */
-    protected function assertStatValueFitsGameMechanics(int $value) : void
+    protected function assertStatValueFitsGameMechanics(int $value): void
     {
         if ($value < self::MIN_ALLOWED_LUCK || $value > self::MAX_ALLOWED_LUCK) {
             throw new DomainException(

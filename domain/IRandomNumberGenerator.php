@@ -14,5 +14,5 @@ interface IRandomNumberGenerator
      *
      * @return int
      */
-    public function generateFromRange(int $min, int $max) : int;
+    public function generateFromRange(int $min, int $max): int;
 }

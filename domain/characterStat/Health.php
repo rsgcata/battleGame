@@ -17,7 +17,7 @@ class Health extends AbstractCharacterStat
      *
      * @return self
      */
-    public function lowerHealthBy(int $factor) : self
+    public function lowerHealthBy(int $factor): self
     {
         if ($factor < 0) {
             throw new DomainException(
@@ -38,7 +38,7 @@ class Health extends AbstractCharacterStat
     /**
      * {@inheritDoc}
      */
-    protected function assertStatValueFitsGameMechanics(int $value) : void
+    protected function assertStatValueFitsGameMechanics(int $value): void
     {
         if ($value < self::MIN_ALLOWED_HEALTH) {
             throw new DomainException(

@@ -252,7 +252,7 @@ class BattleTest extends TestCase
         $rounds = $battle->runBattle();
 
         foreach ($rounds as $round) {
-            if($round->wasHeroAttacker()) {
+            if ($round->wasHeroAttacker()) {
                 $this->assertTrue($round->getFinalDamageValue() > $normalDamage);
             }
         }
@@ -281,7 +281,7 @@ class BattleTest extends TestCase
         $rounds = $battle->runBattle();
 
         foreach ($rounds as $round) {
-            if(!$round->wasHeroAttacker()) {
+            if (!$round->wasHeroAttacker()) {
                 $this->assertTrue($round->getFinalDamageValue() < $normalDamage);
             }
         }

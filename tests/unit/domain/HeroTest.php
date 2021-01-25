@@ -42,15 +42,15 @@ class HeroTest extends TestCase
     {
         $hero = Hero::createWithRandomStats(
             ...[
-                   ...$this->buildStatsArgs(),
-                   [
-                       new RapidStrike(0.7)
-                   ],
-                   [
-                       new MagicShield(0.7)
-                   ],
-                   $this->rng
-               ]);
+            ...$this->buildStatsArgs(),
+            [
+                new RapidStrike(0.7)
+            ],
+            [
+                new MagicShield(0.7)
+            ],
+            $this->rng
+        ]);
 
         $this->assertInstanceOf(Hero::class, $hero);
 
@@ -91,13 +91,13 @@ class HeroTest extends TestCase
 
         Hero::createWithRandomStats(
             ...[
-                   ...$this->buildStatsArgs(),
-                   [
-                       new MagicShield(0.7)
-                   ],
-                   [],
-                   $this->rng
-               ]);
+            ...$this->buildStatsArgs(),
+            [
+                new MagicShield(0.7)
+            ],
+            [],
+            $this->rng
+        ]);
     }
 
     public function testCreateWithRandomStatsFailsWhenInvalidDefenceSkills()
@@ -107,26 +107,26 @@ class HeroTest extends TestCase
 
         Hero::createWithRandomStats(
             ...[
-                   ...$this->buildStatsArgs(),
-                   [],
-                   [
-                       new RapidStrike(0.7)
-                   ],
-                   $this->rng
-               ]);
+            ...$this->buildStatsArgs(),
+            [],
+            [
+                new RapidStrike(0.7)
+            ],
+            $this->rng
+        ]);
     }
 
     public function testGenerateRandomAttackSkillAlwaysReturnsSkillWhenOccurrenceChanceIsMax()
     {
         $hero = Hero::createWithRandomStats(
             ...[
-                   ...$this->buildStatsArgs(),
-                   [
-                       new RapidStrike(1.0)
-                   ],
-                   [],
-                   $this->rng
-               ]);
+            ...$this->buildStatsArgs(),
+            [
+                new RapidStrike(1.0)
+            ],
+            [],
+            $this->rng
+        ]);
 
         $skillCount = 0;
         $numOfTries = 100;
@@ -144,13 +144,13 @@ class HeroTest extends TestCase
     {
         $hero = Hero::createWithRandomStats(
             ...[
-                   ...$this->buildStatsArgs(),
-                   [
-                       new RapidStrike(0.5)
-                   ],
-                   [],
-                   $this->rng
-               ]);
+            ...$this->buildStatsArgs(),
+            [
+                new RapidStrike(0.5)
+            ],
+            [],
+            $this->rng
+        ]);
 
         $skillCount = 0;
         $numOfTries = 100;
@@ -168,13 +168,13 @@ class HeroTest extends TestCase
     {
         $hero = Hero::createWithRandomStats(
             ...[
-                   ...$this->buildStatsArgs(),
-                   [],
-                   [
-                       new MagicShield(1.0)
-                   ],
-                   $this->rng
-               ]);
+            ...$this->buildStatsArgs(),
+            [],
+            [
+                new MagicShield(1.0)
+            ],
+            $this->rng
+        ]);
 
         $skillCount = 0;
         $numOfTries = 100;
@@ -192,13 +192,13 @@ class HeroTest extends TestCase
     {
         $hero = Hero::createWithRandomStats(
             ...[
-                   ...$this->buildStatsArgs(),
-                   [],
-                   [
-                       new MagicShield(0.5)
-                   ],
-                   $this->rng
-               ]);
+            ...$this->buildStatsArgs(),
+            [],
+            [
+                new MagicShield(0.5)
+            ],
+            $this->rng
+        ]);
 
         $skillCount = 0;
         $numOfTries = 100;

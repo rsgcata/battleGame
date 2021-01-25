@@ -68,56 +68,56 @@
 </template>
 
 <script>
-  export default {
-    name: "StatsBar",
-    props: {
-      isHero: {
-        type: Boolean,
-        required: true
-      },
-      health: {
-        type: Number,
-        required: true
-      },
-      strength: {
-        type: Number,
-        required: true
-      },
-      defence: {
-        type: Number,
-        required: true
-      },
-      speed: {
-        type: Number,
-        required: true
-      },
-      luck: {
-        type: Number,
-        required: true
-      },
-      attackSkills: {
-        type: Array,
-        required: false,
-        default: function () {
-          return [];
-        }
-      },
-      defenceSkills: {
-        type: Array,
-        required: false,
-        default: function () {
-          return [];
-        }
-      },
-      currentHealth: {
-        type: Number,
-        required: true
+export default {
+  name: "StatsBar",
+  props: {
+    isHero: {
+      type: Boolean,
+      required: true
+    },
+    health: {
+      type: Number,
+      required: true
+    },
+    strength: {
+      type: Number,
+      required: true
+    },
+    defence: {
+      type: Number,
+      required: true
+    },
+    speed: {
+      type: Number,
+      required: true
+    },
+    luck: {
+      type: Number,
+      required: true
+    },
+    attackSkills: {
+      type: Array,
+      required: false,
+      default: function () {
+        return [];
       }
     },
-    computed: {
-      healthLeftRatio: function() {
-        return parseInt((this.currentHealth * 100) / this.health);
+    defenceSkills: {
+      type: Array,
+      required: false,
+      default: function () {
+        return [];
       }
+    },
+    currentHealth: {
+      type: Number,
+      required: true
+    }
+  },
+  computed: {
+    healthLeftRatio: function () {
+      return parseInt((this.currentHealth * 100) / this.health);
     }
   }
+}
 </script>

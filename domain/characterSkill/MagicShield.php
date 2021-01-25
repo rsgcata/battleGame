@@ -13,7 +13,7 @@ class MagicShield extends AbstractCharacterSkill implements IDefenceSkill
      *
      * @return int The decreased damage value
      */
-    public function decreaseAttackDamage(int $damageValue) : int
+    public function decreaseAttackDamage(int $damageValue): int
     {
         return intval($damageValue / 2);
     }
@@ -21,7 +21,7 @@ class MagicShield extends AbstractCharacterSkill implements IDefenceSkill
     /**
      * {@inheritDoc}
      */
-    public function getSkillName() : string
+    public function getSkillName(): string
     {
         return 'Magic Shield';
     }
